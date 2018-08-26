@@ -1,0 +1,35 @@
+#menu
+order={ }
+# the first thing the dict is the item and then next to it is its cost
+menu={"Chocolate Bar ":"2.00", "Gum ":"0.60", "Chicken Nuggets(6)":"2.50",
+      "Dragon Fruit Slice ":"1.00", "Potato Gems ":"3.50", "Sausage Roll ":"3.50",
+      "Meat Pie ":"4.00","Shephards Pie ":"4.50", "Chicken Wrap ":"5.00", "Nachos ":"5.00",
+      "Pancakes(3) ":"4.50","Donuts ":"2.50","Cake Slice ":"1.00", "Test":"100"}
+
+
+      
+def FoodMenu():
+    global menu
+    global order
+    global item
+    print (sorted(menu))
+    item = input("What would you like?:")
+    correct = True
+    while correct:
+        if item in menu:
+            create_choice = input("would you like to add this item to your order?(y/n)")
+            if create_choice.lower() == "y":
+                print("Item added to order")
+                order[menu].append(item)
+                print(order)
+            else:
+                correct = False
+        else:
+            print("That is not an item on the menu. Please choice an item at add to your order")
+        
+
+  
+
+
+FoodMenu()
+
