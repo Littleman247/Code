@@ -1,0 +1,67 @@
+#data storage
+#this will be where the account username, password and amount will be stored
+accounts={"Admin":["Python",0],"CodeWizard":["UDaBest",999999999999]}
+
+
+#values
+#these allow me to check for Admin power or if the account exist
+Admin = False  
+authenticated = False
+
+
+#test to see accounts
+def accountCheck():
+    global authenticated
+    global Admin
+    global usernname
+    global password
+    
+    while not authenticated:
+        username = input("username: ")
+        password = input("password: ")
+
+        if username not in accounts:
+            create_choice = input("username not found. create new?(y/n)")
+            if (create_choice.lower() == "y"):
+                accounts[username] = []#creates name
+                accounts[username].append(password)#appends password
+                accounts[username].append(0) #$0, starting bl
+                authenticated = True
+        else:
+            print("username found. ")
+            if password == accounts[username][0]:
+                authenticated = True
+                if username == "Admin":
+                    Admin = True
+            else:
+                print("invalid password.")
+
+    print("authenticated. ")
+    if (Admin):
+        print ("admin account acessed")
+
+
+    print("Password: " + str( accounts[username][0] ))
+    print("Amount: " + str( accounts[username][1] ))
+
+    if Admin == True:
+        for eachItem in sorted(accounts):
+            print("Username: " + str(eachItem) + ", Password: " + accounts[eachItem][0] + ", Amount: $ " + str(accounts[eachItem][1]))
+ 
+
+def logOut():
+    global Admin
+    global authenticated
+    create_choice = input("are you sure you wish to logout(y/n)")
+    if (creat_choice.lower()=="y"):
+        Admin = False
+        authenticated = False
+        print("you have been logged out of the main frame")
+    else:
+        print("oh.. ok, umm I'll stop the process then")
+
+def deposit():
+    global username
+    amt = input("What is the amount you would like to add to your account?(int)")
+    accounts[username].append(amt)
+    print ("$" + amt + "was added to" + username)
